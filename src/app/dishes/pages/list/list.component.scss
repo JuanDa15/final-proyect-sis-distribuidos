@@ -1,0 +1,44 @@
+
+.content__header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.content__title{
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.add__btn{
+  position: fixed;
+  bottom: 3%;
+  right: 6%;
+  z-index: 100;
+}
+
+mat-card{
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  margin-bottom: .5rem;
+}
+
+.del__btn,.edit__btn{
+  color: #fff;
+    margin-right: .5rem;
+
+}
+
+.del__btn{
+  background-color: #be4258;
+}
+
+.edit__btn{
+  background-color: #3587A4;
+}

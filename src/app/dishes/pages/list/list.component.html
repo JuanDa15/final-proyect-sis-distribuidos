@@ -1,0 +1,25 @@
+<div  class="content__header">
+  <h1 class="content__title">Dishes...</h1>
+  <button class="add__btn"
+          mat-fab 
+          color="primary"
+          routerLink="/dishes/new-dish">
+    <span class="spacer"></span>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<mat-card *ngFor="let item of list">
+  <div>
+    <mat-card-title>Nombre</mat-card-title>
+    <mat-card-content>Descripcion</mat-card-content>
+  </div>
+  <span class="spacer"></span>
+  <div>
+    <button mat-fab class="del__btn">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-fab  class="edit__btn"  routerLink="/dishes/dish/efsfg">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</mat-card>
