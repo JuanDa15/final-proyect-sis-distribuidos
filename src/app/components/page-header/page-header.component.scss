@@ -1,4 +1,3 @@
-
 .content__header{
   display: flex;
   flex-flow: row nowrap;
@@ -20,25 +19,4 @@
   bottom: 3%;
   right: 6%;
   z-index: 100;
-}
-
-mat-card{
-  display: flex;
-  flex-flow: row nowrap;
-  width: 90%;
-  margin-bottom: .5rem;
-}
-
-.del__btn,.edit__btn{
-  color: #fff;
-    margin-right: .5rem;
-
-}
-
-.del__btn{
-  background-color: #be4258;
-}
-
-.edit__btn{
-  background-color: #3587A4;
 }

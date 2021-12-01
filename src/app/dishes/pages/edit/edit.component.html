@@ -1,1 +1,61 @@
-<p>edit works!</p>
+<h1> Edit dish: {{name.value}}</h1>
+
+<div  class="img__container">
+  <img [src]="url.value|imgSrc" [alt]="name.value"/>
+</div>
+
+<form (ngSubmit)="onSubmit()"
+      autocomplete="off">
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Name:</mat-label>
+    <input  matInput 
+            type="text"
+            [formControl]="name"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Pizza!</mat-hint>
+    <mat-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="name.value" matSuffix mat-icon-button aria-label="Clear" (click)="name.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Description:</mat-label>
+    <input  matInput 
+            type="text"
+            [formControl]="description"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Ingredients: Pineapple, Ham...</mat-hint>
+    <mat-error *ngIf="description.hasError('required')">
+      Description is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="description.value" matSuffix mat-icon-button aria-label="Clear" (click)="description.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>URL:</mat-label>
+    <input  matInput 
+            type="url"
+            [formControl]="url"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. https://media.istockphoto.co...</mat-hint>
+    <mat-error *ngIf="url.hasError('required')">
+      URL is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="url.value" matSuffix mat-icon-button aria-label="Clear" (click)="url.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-raised-button color="primary">
+    Edit dish...
+  </button>
+</form>
+
