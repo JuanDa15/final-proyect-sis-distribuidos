@@ -1,1 +1,92 @@
-<p>new-menu works!</p>
+<div class="container">
+  <h1>Create a menu: </h1>
+  <form (ngSubmit)="onSubmit()"
+        autocomplete="off"
+        [formGroup]="menuForm">
+    <mat-form-field appearance="outline"
+                    class="full-width">
+      <mat-label>Name:</mat-label>
+      <input  matInput 
+              type="text"
+              formControlName="name"
+              [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <div class="content">
+      <div  class="menu_select">
+        <section  class="menu_section">
+          <h2>Entry: </h2>
+          <div class="carousel">
+            <div  *ngFor="let dish of dishesList"
+                  class="card"
+                  (click)="addEntry(dish.id!)">
+              <img [src]="dish.img"/>
+              <p>{{dish.name}}</p>
+            </div>
+          </div>
+        </section>
+        <section  class="menu_section">
+          <h2>Main Course: </h2>
+          <div class="carousel">
+            <div  *ngFor="let dish of dishesList"
+                  class="card"
+                  (click)="addMainCourse(dish.id!)">
+              <img [src]="dish.img"/>
+              <p>{{dish.name}}</p>
+            </div>
+          </div>
+        </section>
+        <section  class="menu_section">
+          <h2>Dessert: </h2>
+          <div class="carousel">
+            <div  *ngFor="let dish of dishesList"
+                  class="card"
+                  (click)="addDessert(dish.id!)">
+              <img [src]="dish.img"/>
+              <p>{{dish.name}}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div  class="menu_preview">
+        <h2>Menu Preview: </h2>
+        <section class="preview_section" *ngIf="entry">
+          <h2>Entry: </h2>
+          <div  class="preview_card" 
+                *ngIf="entry">
+            <img  [src]="entry.img"/>
+            <p>{{entry.name}}</p>
+          </div>
+        </section>
+        <section  class="preview_section"
+                  *ngIf="mainCourse">
+          <h2>Main Course: </h2>
+          <div  class="dish_preview">
+            <div  class="preview_card" 
+                  *ngIf="mainCourse">
+              <img  [src]="mainCourse.img"/>
+              <p>{{mainCourse.name}}</p>
+            </div>
+          </div>
+        </section>
+        <section class="preview_section"
+                  *ngIf="dessert">
+          <h2>Dessert: </h2>
+          <div  class="dish_preview">
+
+            <div  *ngIf="dessert"
+                  class="preview_card">
+              <img  [src]="dessert.img"/>
+              <p>{{dessert.name}}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <button mat-raised-button 
+            color="primary"
+            type="submit">
+      Add menu...
+    </button>
+  </form>
+</div>

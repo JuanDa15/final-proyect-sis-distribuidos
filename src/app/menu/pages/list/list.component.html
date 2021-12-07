@@ -1,3 +1,16 @@
-<page-header  title="Menus..."
+<page-header  title="menus..."
               btnLink="/menus/new-menu"></page-header>
-<card *ngFor="let item of list"></card>
+<card *ngFor="let item of list"
+      [title]="item.name"
+      [id]="item.id!"
+      (OnDelete)="deleteItem( $event )"
+      editUrl="/menus/menu"></card>
+<div  class="paginator"
+      *ngIf="totalMenus > 10">
+  <span class="info1">Items per page: 10</span>
+  <span class="info2">{{list.length}} of {{ totalMenus }}</span>
+  <div class="buttons">
+    <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
+    <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+  </div>
+</div>

@@ -1,1 +1,82 @@
-<p>reservation works!</p>
+<h1>Add new reservation:</h1>
+
+<form (ngSubmit)="onSubmit()"
+      autocomplete="off"
+      [formGroup]="reservationForm">
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Name:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="owner"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Carlos Arturo!</mat-hint>
+    <mat-error *ngIf="reservationForm.get('owner')?.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="reservationForm.get('owner')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="reservationForm.get('owner')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Document:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="document"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Document: 1088255987...</mat-hint>
+    <mat-error *ngIf="reservationForm.get('document')?.hasError('required')">
+      Document is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="reservationForm.get('document')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="reservationForm.get('document')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Select one table: </mat-label>
+    <mat-select  formControlName="table" name="id">
+      <mat-option *ngFor="let document of tableList"
+                  [value]="document.value">
+        {{document.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-hint>Ex. Table: 1</mat-hint>
+    <mat-error *ngIf="reservationForm.get('table')?.hasError('required')">
+      Table is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width mgb-1">
+    <mat-label>Select a date: </mat-label>
+    <input  matInput
+            type="date"
+            formControlName="date"
+            [errorStateMatcher]="matcher"
+            [min]="today">
+    <mat-hint>Ex. Date: 11/05/2021</mat-hint>
+    <mat-error *ngIf="reservationForm.get('date')?.hasError('required')">
+      Date is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary"
+          type="submit">
+    Update Reservation...
+  </button>
+</form>
+

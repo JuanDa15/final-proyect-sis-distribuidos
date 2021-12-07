@@ -1,3 +1,20 @@
 <page-header  title="dishes..."
               btnLink="/dishes/new-dish"></page-header>
-<card *ngFor="let item of list"></card>
+<div>
+  <card *ngFor="let item of list"
+      [title]="item.name"
+      [id]="item.id!"
+      [description]="item.description"
+      [img]="item.img"
+      editUrl="/dishes/dish"
+      (OnDelete)="deleteItem( $event )"></card>
+</div>
+<div  class="paginator"
+      *ngIf="totalDishes > 10">
+  <span class="info1">Items per page: 10</span>
+  <span class="info2">{{list.length}} of {{ totalDishes}}</span>
+  <div class="buttons">
+    <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
+    <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+  </div>
+</div>

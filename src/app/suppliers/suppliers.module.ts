@@ -7,6 +7,8 @@ import { ListComponent } from './pages/list/list.component';
 import { NewSupplierComponent } from './pages/new-supplier/new-supplier.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { ComponentsModule } from '../components/components.module';
+import { AngMaterialModule } from '../ang-material/ang-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     SuppliersRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AngMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class SuppliersModule { }

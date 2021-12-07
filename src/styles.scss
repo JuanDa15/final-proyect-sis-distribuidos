@@ -2,6 +2,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%;  box-sizing: border-box; }
+
+*, *::after, *::before{
+  box-sizing: inherit;
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .spacer {
@@ -13,4 +18,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 90%;
   margin: .5rem auto 0 auto;
   min-height: calc(100vh - 75px);
+}
+
+
+.full-width {
+  width: 100%;
 }

@@ -7,6 +7,8 @@ import { ListComponent } from './pages/list/list.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { NewEmployeeComponent } from './pages/new-employee/new-employee.component';
 import { ComponentsModule } from '../components/components.module';
+import { AngMaterialModule } from '../ang-material/ang-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     EmployeesRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AngMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeesModule { }

@@ -1,1 +1,49 @@
-<p>new-employee works!</p>
+<h1>Add new employee:</h1>
+
+<form (ngSubmit)="onSubmit()"
+      autocomplete="off"
+      [formGroup]="employeeForm">
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Choose one</mat-label>
+    <mat-select  formControlName="document_type" name="id">
+      <mat-option *ngFor="let document of documentTypes"
+                  [value]="document.value">
+        {{document.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>id:</mat-label>
+    <input  matInput 
+    type="text"
+    formControlName="document">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Name:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Choose one</mat-label>
+    <mat-select  formControlName="charge" name="charge">
+      <mat-option *ngFor="let charge of chargeTypes"
+                  [value]="charge.value">
+        {{charge.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary"
+          type="submit">
+    Add employee...
+  </button>
+</form>

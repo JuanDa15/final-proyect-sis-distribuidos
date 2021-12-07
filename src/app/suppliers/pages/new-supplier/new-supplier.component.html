@@ -1,1 +1,67 @@
-<p>new-supplier works!</p>
+<h1>Add new Supplier:</h1>
+
+<form (ngSubmit)="onSubmit()"
+      autocomplete="off"
+      [formGroup]="supplierForm">
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Name:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="name"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Carlos Arturo!</mat-hint>
+    <mat-error *ngIf="supplierForm.get('name')?.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="supplierForm.get('name')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="supplierForm.get('name')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Nit:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="nit"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Nit: 1088255-8...</mat-hint>
+    <mat-error *ngIf="supplierForm.get('nit')?.hasError('required')">
+      Document is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="supplierForm.get('nit')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="supplierForm.get('nit')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Select one type: </mat-label>
+    <mat-select  formControlName="type" name="id">
+      <mat-option *ngFor="let document of typeList"
+                  [value]="document.value">
+        {{document.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-hint>Ex. type: Meat</mat-hint>
+    <mat-error *ngIf="supplierForm.get('type')?.hasError('required')">
+      Table is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary"
+          type="submit">
+    Add Supplier...
+  </button>
+</form>
+

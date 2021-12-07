@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [],
@@ -26,7 +28,9 @@ import {MatInputModule} from '@angular/material/input';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatDatepickerModule
   ],
   exports:[
     MatSidenavModule,
@@ -39,7 +43,9 @@ import {MatInputModule} from '@angular/material/input';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatDatepickerModule
   ]
 })
 export class AngMaterialModule { }

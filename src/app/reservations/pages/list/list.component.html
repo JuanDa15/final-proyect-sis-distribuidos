@@ -1,3 +1,18 @@
-<page-header  title="Reservations..."
+<page-header  title="reservations..."
               btnLink="/reservations/new-reservation"></page-header>
-<card *ngFor="let item of list"></card>
+<card *ngFor="let item of list"
+      [title]="item.owner + ' - ' + item.document"
+      [id]="item.id!"
+      subtitle="{{'Table: '+item.table}}"
+      [description]="'Reservation Date:    '+item.date"
+      (OnDelete)="deleteItem( $event )"
+      editUrl="/reservations/reservation"></card>
+<div  class="paginator"
+      *ngIf="totalReservations > 10">
+  <span class="info1">Items per page: 10</span>
+  <span class="info2">{{list.length}} of {{ totalReservations}}</span>
+  <div class="buttons">
+    <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
+    <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+  </div>
+</div>

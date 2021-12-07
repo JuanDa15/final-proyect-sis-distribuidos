@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { supplierInterface } from 'src/app/interfaces/supplier.interface';
+import { MenuService } from 'src/app/services/menu.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -7,10 +10,85 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
   
-  list:string[] = ['','','','','']
-  constructor() { }
+  list:supplierInterface[];
+  totalMenus:number;
+  firstItem:number;
+  lastItem:number;
+  hasNextPage:boolean;
+  hasPreviusPage:boolean;
+
+
+  constructor(private menuService:MenuService) {
+    this.list = [];
+    this.totalMenus = 0;
+    this.firstItem = 0;
+    this.lastItem = 9;
+    this.hasNextPage = false;
+    this.hasPreviusPage = false;
+  }
 
   ngOnInit(): void {
+    this.fetchData(`${this.firstItem}-${this.lastItem}`);
   }
+
+  fetchData(pagination:string){
+    this.menuService.getMenus(pagination)
+      .subscribe({
+        next: (val:any) => {
+          (this.firstItem !== 0)? this.hasPreviusPage = true: this.hasPreviusPage = false;
+          ( this.lastItem < val.count)? this.hasNextPage = true: this.hasNextPage = false;
+          if(val.data.length !== 0){
+            this.list = val.data;
+            this.totalMenus = val.count;
+          }
+        },
+        error: () => {}
+      })
+  }
+
+  nextPage(){
+    if(this.hasNextPage){
+      this.firstItem =  this.firstItem + 10;
+      this.lastItem =  this.lastItem + 10;
+
+      this.fetchData(`${this.firstItem}-${this.lastItem}`);
+    }
+  }
+
+  previusPage(){
+    if(this.hasPreviusPage){
+      if((this.firstItem > 0) && (this.lastItem > 0)){
+        this.firstItem =  this.firstItem - 10;
+        this.lastItem =  this.lastItem - 10;
+        this.fetchData(`${this.firstItem}-${this.lastItem}`);
+      }else{
+        this.firstItem = 0;
+        this.lastItem = 9;
+      }
+    }
+  }
+
+  deleteItem(id:number){
+    this.menuService.deleteMenu(id)
+      .subscribe({
+        next: () => {
+          this.firstItem = 0;
+          this.lastItem = 9;
+          this.fetchData(`${this.firstItem}-${this.lastItem}`);
+          Swal.fire({
+            icon:'success',
+            text:'Successfully deleted',
+            timer:1500
+          })
+        },
+        error: (err:any) => Swal.fire({
+          icon:'error',
+          text:'Error while deleting',
+          timer:1500
+        })
+      })
+  }
+
+
 
 }

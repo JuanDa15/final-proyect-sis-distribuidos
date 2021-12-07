@@ -7,7 +7,10 @@ import { ListComponent } from './pages/list/list.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { NewMenuComponent } from './pages/new-menu/new-menu.component';
 import { ComponentsModule } from '../components/components.module';
-
+import { AngMaterialModule } from '../ang-material/ang-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from 'primeng/carousel';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,12 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     MenuRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AngMaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CarouselModule,
+    CardModule
   ]
 })
 export class MenuModule { }

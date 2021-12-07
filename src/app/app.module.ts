@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { P404Component } from './pages/p404/p404.component';
 import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,7 @@ import { ComponentsModule } from './components/components.module';
     AngMaterialModule,
     RouterModule,
     ComponentsModule,
-  ],
-  exports:  [
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,18 @@
 <page-header  title="employees..."
               btnLink="/employees/new-employee"></page-header>
-<card *ngFor="let item of list"></card>
+<card *ngFor="let item of list"
+      [title]="item.name"
+      [id]="item.id!"
+      subtitle="{{item.document_type + '       ' +item.document}}"
+      [description]="item.charge"
+      (OnDelete)="deleteItem( $event )"
+      editUrl="/employees/employee"></card>
+<div  class="paginator"
+      *ngIf="totalEmployees > 10">
+  <span class="info1">Items per page: 10</span>
+  <span class="info2">{{list.length}} of {{ totalEmployees}}</span>
+  <div class="buttons">
+    <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
+    <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+  </div>
+</div>

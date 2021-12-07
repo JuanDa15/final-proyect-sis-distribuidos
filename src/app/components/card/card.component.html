@@ -1,15 +1,20 @@
 <mat-card class="animate__animated animate__fadeIn ">
+  <img *ngIf="img.trim().length !== 0" [src]="img|defaultImg" [alt]="title"/>
   <mat-card-content>
-    <mat-card-title>{{title}}</mat-card-title>
-    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+    <mat-card-title>{{title|titlecase}}</mat-card-title>
+    <mat-card-subtitle>{{subtitle|titlecase }}</mat-card-subtitle>
     <p>{{description}}</p>
   </mat-card-content>
   <span class="spacer"></span>
   <mat-card-actions>
-    <button mat-fab class="del__btn">
+    <button mat-fab 
+            class="del__btn"
+            (click)="deleteItem()">
       <mat-icon>delete</mat-icon>
     </button>
-    <button mat-fab  class="edit__btn"  routerLink="/dishes/dish/efsfg">
+    <button mat-fab  
+            class="edit__btn"
+            (click)="editItem()">
       <mat-icon>edit</mat-icon>
     </button>
   </mat-card-actions>

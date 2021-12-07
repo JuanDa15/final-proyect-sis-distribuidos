@@ -7,6 +7,8 @@ import { ListComponent } from './pages/list/list.component';
 import { NewReservationComponent } from './pages/new-reservation/new-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { ComponentsModule } from '../components/components.module';
+import { AngMaterialModule } from '../ang-material/ang-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     ReservationsRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AngMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ReservationsModule { }

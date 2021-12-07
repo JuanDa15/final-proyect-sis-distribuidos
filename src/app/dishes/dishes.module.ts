@@ -17,7 +17,7 @@ import { ImgSrcPipe } from './pipes/img-src.pipe';
     DishComponent,
     ListComponent,
     EditComponent,
-    ImgSrcPipe,
+    ImgSrcPipe
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,8 @@ import { ImgSrcPipe } from './pipes/img-src.pipe';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  exports:[
   ]
 })
 export class DishesModule { }

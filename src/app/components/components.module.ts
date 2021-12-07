@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DefaultImgPipe } from './default-img.pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent,
     CardComponent,
     PageHeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    DefaultImgPipe
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent,
     CardComponent,
     PageHeaderComponent
+  ],
+  providers:[
+    DefaultImgPipe
   ]
 })
 export class ComponentsModule { }
