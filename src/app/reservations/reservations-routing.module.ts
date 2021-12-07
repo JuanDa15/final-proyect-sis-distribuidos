@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { NewReservationComponent } from './pages/new-reservation/new-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { UseCodeComponent } from './pages/use-code/use-code.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path:'reservation/:id',
         component:ReservationComponent
+      },
+      {
+        path:'claim-reservation',
+        component:UseCodeComponent
       },
       {
         path:'**',

@@ -80,3 +80,7 @@
   </button>
 </form>
 
+<div  class="alert" *ngIf="token">
+  <h2>Save this token: </h2>
+  <p >{{token}}</p> <mat-icon (click)="copyText()">copy_all</mat-icon>
+</div>

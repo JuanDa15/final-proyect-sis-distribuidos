@@ -9,6 +9,8 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
 import { ComponentsModule } from '../components/components.module';
 import { AngMaterialModule } from '../ang-material/ang-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from 'ngx-clipboard';
+import { UseCodeComponent } from './pages/use-code/use-code.component';
 
 
 @NgModule({
@@ -16,14 +18,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ListComponent,
     NewReservationComponent,
-    ReservationComponent
+    ReservationComponent,
+    UseCodeComponent
   ],
   imports: [
     CommonModule,
     ReservationsRoutingModule,
     ComponentsModule,
     AngMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ]
 })
 export class ReservationsModule { }

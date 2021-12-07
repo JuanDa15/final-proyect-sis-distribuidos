@@ -20,3 +20,31 @@ mat-form-field{
 img{
   width: 100%;
 }
+
+.alert{
+  margin-top: 3rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(54, 119, 204);
+  border-radius: .5rem;
+  border: 3px solid rgb(28, 55, 131);
+  text-align: center;
+
+  h2{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    color: rgb(31, 71, 156);
+  }
+
+  p{
+    margin-top: 1rem;
+    font-size: 3rem;
+    color: rgb(31, 71,156);
+  }
+
+  mat-icon{
+    color:#fff;
+    margin-left: .5rem;
+  }
+}

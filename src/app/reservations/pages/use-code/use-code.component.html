@@ -1,0 +1,45 @@
+<h1>Enter your reservation code and document:</h1>
+
+<form (ngSubmit)="onSubmit()"
+      autocomplete="off"
+      [formGroup]="reservationForm">
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Document:</mat-label>
+    <input  matInput 
+            type="text"
+            formControlName="document"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Document: 1088255987...</mat-hint>
+    <mat-error *ngIf="reservationForm.get('document')?.hasError('required')">
+      Document is <strong>required</strong>
+    </mat-error>
+    <button *ngIf="reservationForm.get('document')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="reservationForm.get('document')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  class="full-width">
+    <mat-label>Select a date: </mat-label>
+    <input  matInput
+            type="text"
+            formControlName="code"
+            [errorStateMatcher]="matcher">
+    <mat-hint>Ex. Date: 11/05/2021</mat-hint>
+    <mat-error *ngIf="reservationForm.get('code')?.hasError('required')">
+      Code is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary"
+          type="submit">
+    Claim reservation...
+  </button>
+</form>
