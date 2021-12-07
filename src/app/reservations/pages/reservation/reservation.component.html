@@ -66,7 +66,7 @@
             type="date"
             formControlName="date"
             [errorStateMatcher]="matcher"
-            [min]="today">
+            [min]="mindate()">
     <mat-hint>Ex. Date: 11/05/2021</mat-hint>
     <mat-error *ngIf="reservationForm.get('date')?.hasError('required')">
       Date is <strong>required</strong>

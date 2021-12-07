@@ -99,4 +99,18 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  mindate(){
+
+    const date = new Date();
+
+    const dd = (date.getDate() < 10)? '0'+ date.getDate() : date.getDate();
+    const mm = (date.getMonth() < 10)? '0'+ date.getMonth() : date.getMonth();
+    const hh = (date.getHours() < 10)? '0'+date.getHours() : date.getHours();
+    const minutes = (date.getMinutes() < 10)? '0'+date.getMinutes(): date.getMinutes();
+
+    const today = date.getFullYear()+'-'+(Number(mm) + 1)+'-'+dd;
+
+    return today.toString();
+  }
+
 }

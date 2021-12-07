@@ -25,7 +25,6 @@ interface tableList {
 })
 export class NewReservationComponent{
 
-  today:Date = new Date();
   tableList: tableList[] = [
     {value: '1', viewValue: '1'},
     {value: '2', viewValue: '2'},
@@ -51,7 +50,9 @@ export class NewReservationComponent{
 
 
   constructor(private reservationService:ReservationService,
-              private router:Router){}
+              private router:Router){
+                this.mindate()
+              }
 
   onSubmit(){
     if(this.reservationForm.valid){
@@ -80,5 +81,17 @@ export class NewReservationComponent{
     }
   }
 
+  mindate(){
 
+    const date = new Date();
+
+    const dd = (date.getDate() < 10)? '0'+ date.getDate() : date.getDate();
+    const mm = (date.getMonth() < 10)? '0'+ date.getMonth() : date.getMonth();
+    const hh = (date.getHours() < 10)? '0'+date.getHours() : date.getHours();
+    const minutes = (date.getMinutes() < 10)? '0'+date.getMinutes(): date.getMinutes();
+
+    const today = date.getFullYear()+'-'+(Number(mm) + 1)+'-'+dd;
+
+    return today.toString();
+  }
 }
