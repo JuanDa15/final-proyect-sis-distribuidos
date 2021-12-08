@@ -8,6 +8,11 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DefaultImgPipe } from './default-img.pipe';
+import { CalendarComponent } from './calendar/calendar.component';
+import { IgxCalendarModule } from 'igniteui-angular';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 
 @NgModule({
@@ -16,17 +21,24 @@ import { DefaultImgPipe } from './default-img.pipe';
     CardComponent,
     PageHeaderComponent,
     DashboardComponent,
-    DefaultImgPipe
+    DefaultImgPipe,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
     AngMaterialModule,
-    RouterModule
+    RouterModule,
+    IgxCalendarModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   exports: [
     NavbarComponent,
     CardComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    CalendarComponent
   ],
   providers:[
     DefaultImgPipe

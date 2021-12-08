@@ -28,6 +28,7 @@ export class ReservationComponent implements OnInit {
 
   id:number;
   today:Date = new Date();
+  reservationsList:ReservationInterface[] = [];
   tableList: tableList[] = [
     {value: '1', viewValue: '1'},
     {value: '2', viewValue: '2'},
@@ -69,8 +70,18 @@ export class ReservationComponent implements OnInit {
           this.reservationForm.patchValue(val.data);
         }
       })
+
+      this.getReservations();
   }
-            
+  
+  getReservations(){
+    this.reservationService.getReservations('0-9')
+      .subscribe({
+        next: (val:any) => {
+          this.reservationsList = val.data;
+        }
+      })
+  }
 
   onSubmit(){
     if(this.reservationForm.valid){

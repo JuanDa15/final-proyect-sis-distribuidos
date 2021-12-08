@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { CalendarEvent } from 'calendar-utils';
+import startOfDay from 'date-fns/startOfDay';
 import { ClipboardService } from 'ngx-clipboard';
 import { ReservationInterface } from 'src/app/interfaces/reservation.interface';
 import { ReservationService } from 'src/app/services/reservation.service';
@@ -24,9 +26,10 @@ interface tableList {
   templateUrl: './new-reservation.component.html',
   styleUrls: ['./new-reservation.component.scss']
 })
-export class NewReservationComponent{
+export class NewReservationComponent implements OnInit{
 
   token:string = '';
+  reservationsList:ReservationInterface[] = [];
 
   tableList: tableList[] = [
     {value: '1', viewValue: '1'},
@@ -57,6 +60,18 @@ export class NewReservationComponent{
               private clipboardApi: ClipboardService){
                 this.mindate()
               }
+  ngOnInit(): void {
+    this.getReservations();
+  }
+
+  getReservations(){
+    this.reservationService.getReservations('0-9')
+      .subscribe({
+        next: (val:any) => {
+          this.reservationsList = val.data;
+        }
+      })
+  }
 
   onSubmit(){
     if(this.reservationForm.valid){
@@ -74,6 +89,7 @@ export class NewReservationComponent{
               position: 'center'
             });
             this.tokenGenerator();
+            this.getReservations();
           },
             error: (err:any) => Swal.fire({
               icon:'error',

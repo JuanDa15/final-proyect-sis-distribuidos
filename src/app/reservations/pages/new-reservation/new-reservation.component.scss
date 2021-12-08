@@ -1,7 +1,14 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.content{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+}
+
+form{
+  flex: 1 1 60%;
+}
+app-calendar{
+  flex: 1 1 40%;
 }
 
 mat-form-field{

@@ -1,3 +1,16 @@
 mat-form-field{
   margin-bottom: 2rem !important;
 }
+
+.content{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+}
+
+form{
+  flex: 1 1 60%;
+}
+app-calendar{
+  flex: 1 1 40%;
+}
