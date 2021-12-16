@@ -45,7 +45,6 @@ export class NewReservationComponent implements OnInit{
   ];
 
   reservationForm = new FormGroup({
-    owner : new FormControl('', [Validators.required]),
     document : new FormControl('', [Validators.required]),
     table:  new FormControl('', [Validators.required]),
     date: new FormControl('',[Validators.required])
@@ -69,6 +68,8 @@ export class NewReservationComponent implements OnInit{
       .subscribe({
         next: (val:any) => {
           this.reservationsList = val.data;
+          let temp = this.reservationsList.find((x:any) => x.document == this.reservationForm.get('document')?.value);
+          this.token = temp?.security_code!;
         }
       })
   }
@@ -81,14 +82,14 @@ export class NewReservationComponent implements OnInit{
 
       this.reservationService.addReservation(bodyRequest)
           .subscribe({
-            next: () => {
+            next: (val) => {
               Swal.fire({
               text: "Successfully created",
               icon: "success",
               timer: 1500,
               position: 'center'
             });
-            this.tokenGenerator();
+            // console.log(val);
             this.getReservations();
           },
             error: (err:any) => Swal.fire({
@@ -107,10 +108,6 @@ export class NewReservationComponent implements OnInit{
     const mm = (date.getMonth() < 10)? '0'+ date.getMonth() : date.getMonth();
     const today = date.getFullYear()+'-'+(Number(mm) + 1)+'-'+dd;
     return today.toString();
-  }
-
-  tokenGenerator(){
-    this.token =  new Date().getTime().toString();
   }
 
   copyText(){

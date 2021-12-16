@@ -1,4 +1,4 @@
-<h1>Enter your reservation code and document:</h1>
+<h1>Enter your reservation code:</h1>
 
 <form (ngSubmit)="onSubmit()"
       autocomplete="off"
@@ -6,40 +6,46 @@
 
   <mat-form-field appearance="outline"
                   class="full-width">
-    <mat-label>Document:</mat-label>
+    <mat-label>Code:</mat-label>
     <input  matInput 
-            type="text"
-            formControlName="document"
-            [errorStateMatcher]="matcher">
-    <mat-hint>Ex. Document: 1088255987...</mat-hint>
-    <mat-error *ngIf="reservationForm.get('document')?.hasError('required')">
-      Document is <strong>required</strong>
-    </mat-error>
-    <button *ngIf="reservationForm.get('document')?.value" 
-            matSuffix 
-            mat-icon-button 
-            aria-label="Clear" 
-            (click)="reservationForm.get('document')?.setValue('')">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline"
-                  class="full-width">
-    <mat-label>Select a date: </mat-label>
-    <input  matInput
             type="text"
             formControlName="code"
             [errorStateMatcher]="matcher">
-    <mat-hint>Ex. Date: 11/05/2021</mat-hint>
+    <mat-hint>Ex. Code: grdg74gd94rg...</mat-hint>
     <mat-error *ngIf="reservationForm.get('code')?.hasError('required')">
       Code is <strong>required</strong>
     </mat-error>
+    <button *ngIf="reservationForm.get('code')?.value" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Clear" 
+            (click)="reservationForm.get('code')?.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
-
 
   <button mat-raised-button color="primary"
           type="submit">
     Claim reservation...
   </button>
 </form>
+
+<div class="reservation_info" *ngIf="reservationInfo">
+  <h2>Reservation Information:</h2>
+  <div class="reservationBlock">
+    <h3>Owner:</h3>
+    <p>{{reservationInfo?.owner}}</p>
+  </div>
+  <div class="reservationBlock">
+    <h3>Document:</h3>
+    <p>{{reservationInfo?.document}}</p>
+  </div>
+  <div class="reservationBlock">
+    <h3>Reservation Table:</h3>
+    <p>{{reservationInfo?.table}}</p>
+  </div>
+  <div class="reservationBlock">
+    <h3>Reservation Date</h3>
+    <p>{{reservationInfo?.date}}</p>
+  </div>
+</div>

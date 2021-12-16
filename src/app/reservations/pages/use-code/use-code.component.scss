@@ -1,0 +1,34 @@
+.reservation_info{
+  margin-top: 1rem;
+  background-color: #404040;
+  padding: 1rem;
+  border-radius: .5rem;
+  box-shadow: 0 0 3px #252525;
+
+  h2{
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #c2185b;
+  }
+}
+.reservationBlock{
+
+
+  h3{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  p{
+    margin: 0;
+    padding: 0;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c2185b;
+  }
+}

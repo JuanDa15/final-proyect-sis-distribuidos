@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { supplierInterface } from '../interfaces/supplier.interface';
@@ -37,5 +37,14 @@ export class MenuService {
   updateMenu(body:supplierInterface,id:number){
     let url:string = `${this._endPoint}/menu/${id}`;
     return this.http.patch(url,body);
+  }
+
+  filter(field:string,value:string){
+    let url:string = `${this._endPoint}/menu`;
+
+    const params = new HttpParams()
+      .set(field,value);
+
+    return this.http.get(url,{params});
   }
 }

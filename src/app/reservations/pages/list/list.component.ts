@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 import { ReservationInterface } from 'src/app/interfaces/reservation.interface';
 import { ReservationService } from 'src/app/services/reservation.service';
 import Swal from 'sweetalert2';
@@ -11,12 +12,16 @@ import Swal from 'sweetalert2';
 export class ListComponent implements OnInit {
 
   list:ReservationInterface[];
+  tempList:ReservationInterface[];
   totalReservations:number;
   firstItem:number;
   lastItem:number;
   hasNextPage:boolean;
   hasPreviusPage:boolean;
+  searchType:string;
+  notFound:boolean = false;
 
+  @ViewChild('type') type!:ElementRef;
 
   constructor(private reservationService:ReservationService) {
     this.list = [];
@@ -25,6 +30,8 @@ export class ListComponent implements OnInit {
     this.lastItem = 9;
     this.hasNextPage = false;
     this.hasPreviusPage = false;
+    this.tempList = [];
+    this.searchType = 'date';
   }
 
   ngOnInit(): void {
@@ -89,4 +96,40 @@ export class ListComponent implements OnInit {
       })
   }
 
+  // search( e:string){
+  //   if(e.trim().length === 0){
+  //     this.list = this.tempList;
+  //   }else{
+  //   // this.reservationService.getReservations('0-9').pipe(
+  //   //   switchMap((val:any) => this.reservationService.getReservations(`0-${val.count}`))
+  //   // ).subscribe({
+  //   //   next:(val:any) => this.searchList = val.data
+  //   // })
+
+  //   let fields:string[] = ['date','document','table','owner'];
+  //   let arr:any[] = [];
+
+  //   fields.forEach((field:string)=> {
+  //     if(this.list.filter((reservation:any) => reservation[field].toString().includes(e)).length != 0){
+  //       arr = this.list.filter((reservation:any) => reservation[field].toString().includes(e));
+  //     }
+  //   })
+
+  //   this.tempList = this.list;
+  //   this.list = arr;
+  // }}
+
+  search(e:string){
+    let field = this.type.nativeElement.value;
+    this.reservationService.filter(field,e).subscribe({
+      next: (val:any) => {
+        if(val.data.length === 0){
+          this.notFound = true;
+        }else{
+          this.list = val.data;
+          this.notFound = false;
+        }
+      }
+    })
+  }
 }

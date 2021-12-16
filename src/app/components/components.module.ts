@@ -12,6 +12,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { IgxCalendarModule } from 'igniteui-angular';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 
 
@@ -22,7 +23,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     PageHeaderComponent,
     DashboardComponent,
     DefaultImgPipe,
-    CalendarComponent
+    CalendarComponent,
+    SearchbarComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     NavbarComponent,
     CardComponent,
     PageHeaderComponent,
-    CalendarComponent
+    CalendarComponent,
+    SearchbarComponent
   ],
   providers:[
     DefaultImgPipe

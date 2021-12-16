@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { EmployeeInterface } from 'src/app/interfaces/employee.interface';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { CustomerInterface } from 'src/app/interfaces/customer.interface';
+import { CustomerService } from 'src/app/services/customer.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,8 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  list:EmployeeInterface[];
-  totalEmployees:number;
+  list:CustomerInterface[];
+  totalCustomers:number;
   firstItem:number;
   lastItem:number;
   hasNextPage:boolean;
@@ -22,14 +22,14 @@ export class ListComponent implements OnInit {
   @ViewChild('type') type!:ElementRef;
 
 
-  constructor(private employeeService:EmployeeService) {
+  constructor(private customerService:CustomerService) {
     this.list = [];
-    this.totalEmployees = 0;
+    this.totalCustomers = 0;
     this.firstItem = 0;
     this.lastItem = 9;
     this.hasNextPage = false;
     this.hasPreviusPage = false;
-    this.searchType = 'date';
+    this.searchType = 'name';
   }
 
   ngOnInit(): void {
@@ -37,17 +37,17 @@ export class ListComponent implements OnInit {
   }
 
   fetchData(pagination:string){
-    this.employeeService.getEmployees(pagination)
+    this.customerService.getCustomers(pagination)
       .subscribe({
         next: (val:any) => {
           (this.firstItem !== 0)? this.hasPreviusPage = true: this.hasPreviusPage = false;
           ( this.lastItem < val.count)? this.hasNextPage = true: this.hasNextPage = false;
           if(val.data.length !== 0){
             this.list = val.data;
-            this.totalEmployees = val.count;
+            this.totalCustomers = val.count;
           }
         },
-        error: (err) => console.log(err)
+        error: () => {}
       })
   }
 
@@ -74,7 +74,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteItem(id:number){
-    this.employeeService.deleteEmployee(id)
+    this.customerService.deleteCustomer(id)
       .subscribe({
         next: () => {
           this.firstItem = 0;
@@ -86,7 +86,7 @@ export class ListComponent implements OnInit {
             timer:1500
           })
         },
-        error: (err) => Swal.fire({
+        error: (err:any) => Swal.fire({
           icon:'error',
           text:'Error while deleting',
           timer:1500
@@ -94,9 +94,10 @@ export class ListComponent implements OnInit {
       })
   }
 
+
   search(e:string){
     let field = this.type.nativeElement.value;
-    this.employeeService.filter(field,e).subscribe({
+    this.customerService.filter(field,e).subscribe({
       next: (val:any) => {
         if(val.data.length === 0){
           this.notFound = true;

@@ -26,7 +26,8 @@ export class EmployeeComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     charge: new FormControl('',[Validators.required]),
     document_type: new FormControl('',[Validators.required]),
-    document: new FormControl('',[Validators.required])
+    document: new FormControl('',[Validators.required]),
+    hiring_date: new FormControl('',[Validators.required])
   })
 
   documentTypes: DocType[] = [
@@ -59,6 +60,10 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployee(this.id).subscribe({
       next: (val:any) => this.employeeForm.patchValue(val.data)
     })
+
+    this.employeeForm.get('hiring_date')?.disable();
+    this.employeeForm.get('document')?.disable();
+    this.employeeForm.get('document_type')?.disable();
   }
 
   onSubmit(){

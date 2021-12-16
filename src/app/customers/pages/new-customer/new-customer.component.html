@@ -2,7 +2,7 @@
 
 <form (ngSubmit)="onSubmit()"
       autocomplete="off"
-      [formGroup]="employeeForm">
+      [formGroup]="customerForm">
 
   <mat-form-field appearance="outline"
                   class="full-width">
@@ -33,25 +33,14 @@
 
   <mat-form-field appearance="outline"
                   class="full-width">
-    <mat-label>Choose one</mat-label>
-    <mat-select  formControlName="charge" name="charge">
-      <mat-option *ngFor="let charge of chargeTypes"
-                  [value]="charge.value">
-        {{charge.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline"
-                  class="full-width">
-    <mat-label>id:</mat-label>
+    <mat-label>Email:</mat-label>
     <input  matInput 
-    type="text"
-    formControlName="hiring_date">
+            type="text"
+            formControlName="email">
   </mat-form-field>
 
   <button mat-raised-button color="primary"
           type="submit">
-    Add employee...
+    Add customer...
   </button>
 </form>

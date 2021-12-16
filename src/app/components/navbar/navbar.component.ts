@@ -42,7 +42,8 @@ export class NavbarComponent implements OnInit {
     {url:'/reservations',text: 'Reservations'},
     {url:'/menus', text: 'Menus'},
     {url:'/employees', text: 'Employees'},
-    {url:'/dishes', text: 'Dishes'}
+    {url:'/dishes', text: 'Dishes'},
+    {url:'/customers', text: 'Customers'}
   ]
 
   constructor() { }

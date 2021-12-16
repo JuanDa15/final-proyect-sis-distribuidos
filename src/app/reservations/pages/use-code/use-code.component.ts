@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { ReservationInterface } from 'src/app/interfaces/reservation.interface';
 import { ReservationService } from 'src/app/services/reservation.service';
 import Swal from 'sweetalert2';
 
@@ -19,8 +20,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UseCodeComponent{
 
+  reservationInfo!:ReservationInterface;
+
   reservationForm = new FormGroup({
-    document : new FormControl('', [Validators.required]),
     code: new FormControl('',[Validators.required])
   })
 
@@ -37,24 +39,24 @@ export class UseCodeComponent{
 
       let bodyRequest = this.reservationForm.value; 
 
-      console.log(bodyRequest);
-      // this.reservationService.addReservation(bodyRequest)
-      //     .subscribe({
-      //       next: () => {
-      //         Swal.fire({
-      //         text: "Successfully created",
-      //         icon: "success",
-      //         timer: 1500,
-      //         position: 'center'
-      //       });
-      //     },
-      //       error: (err:any) => Swal.fire({
-      //         icon:'error',
-      //         timer:1500,
-      //         position: 'center',
-      //         text: `${err.error.detailed}`
-      //       })
-      //     })
+      this.reservationService.code(bodyRequest.code)
+          .subscribe({
+            next: (val:any) => {
+              Swal.fire({
+              text: "Successfull",
+              icon: "success",
+              timer: 1500,
+              position: 'center'
+            });
+            this.reservationInfo = val.data;
+          },
+            error: (err:any) => Swal.fire({
+              icon:'error',
+              timer:1500,
+              position: 'center',
+              text: `${err.error.detailed}`
+            })
+          })
     }
   }
 }

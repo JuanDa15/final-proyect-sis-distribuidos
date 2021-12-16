@@ -3,5 +3,6 @@ export interface EmployeeInterface{
   name: string,
   charge:string,
   document:string,
-  document_type:string
+  document_type:string,
+  hiring_date?:Date
 }

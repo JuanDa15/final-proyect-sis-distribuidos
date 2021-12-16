@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CalendarEvent } from 'calendar-utils';
 import { startOfDay } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
 import { ReservationInterface } from 'src/app/interfaces/reservation.interface';
 import { ReservationService } from 'src/app/services/reservation.service';
 
@@ -12,6 +13,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class CalendarComponent implements OnInit {
   reservationsList:ReservationInterface[] = [];
   viewDate = new Date();
+  view: CalendarView = CalendarView.Month;
   @Input() set reservations(reservationsList:ReservationInterface[]){
     this.events = [];
     this.reservationsList = reservationsList;
@@ -32,7 +34,7 @@ export class CalendarComponent implements OnInit {
                 ...this.events,
                 {
                   start:new Date(x.date),
-                  title:x.owner+ "-id: " +x.document+"-table: "+x.table
+                  title: "id: " +x.document+"-table: "+x.table
                 }
         ]
     }

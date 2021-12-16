@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EmployeeInterface } from '../interfaces/employee.interface';
@@ -39,4 +39,20 @@ export class ReservationService {
     let url:string = `${this._endPoint}/reservation/${id}`;
     return this.http.patch(url,body);
   }
+
+  filter(field:string,value:string){
+    let url:string = `${this._endPoint}/reservation`;
+
+    const params = new HttpParams()
+      .set(field,value);
+
+    return this.http.get(url,{params});
+  }
+
+  code(code:string){
+    let url:string = `${this._endPoint}/reservation/${code}`;
+
+    return this.http.get(url);
+  }
+
 }

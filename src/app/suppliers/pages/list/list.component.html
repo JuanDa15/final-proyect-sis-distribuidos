@@ -1,18 +1,37 @@
-<page-header  title="suppliers..."
-              btnLink="/suppliers/new-supplier"></page-header>
-<card *ngFor="let item of list"
-      [title]="item.name"
-      [id]="item.id!"
-      [subtitle]="'Nit:   '+item.nit"
-      [description]="'Supplier type: '+item.type"
-      (OnDelete)="deleteItem( $event )"
-      editUrl="/suppliers/supplier"></card>
-<div  class="paginator"
-      *ngIf="totalSuppliers > 10">
-  <span class="info1">Items per page: 10</span>
-  <span class="info2">{{list.length}} of {{ totalSuppliers}}</span>
-  <div class="buttons">
-    <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
-    <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+<div class="searchBox">
+  <searchbar
+    (OnSearch)="search($event)"
+    (OnDebounce)="search($event)"
+  ></searchbar>
+  <select class="input-d" #type>
+    <option value="nit">Nit</option>
+    <option value="name">Name</option>
+    <option value="type" selected>Type</option>
+  </select>
+</div>
+<div *ngIf="!notFound">
+  <page-header
+    title="suppliers..."
+    btnLink="/suppliers/new-supplier"
+  ></page-header>
+  <card
+    *ngFor="let item of list"
+    [title]="item.name"
+    [id]="item.id!"
+    [subtitle]="'Nit:   ' + item.nit"
+    [description]="'Supplier type: ' + item.type"
+    (OnDelete)="deleteItem($event)"
+    editUrl="/suppliers/supplier"
+  ></card>
+  <div class="paginator" *ngIf="totalSuppliers > 10">
+    <span class="info1">Items per page: 10</span>
+    <span class="info2">{{ list.length }} of {{ totalSuppliers }}</span>
+    <div class="buttons">
+      <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
+      <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>
+    </div>
   </div>
+</div>
+<div *ngIf="notFound" class="notFoundAlert">
+  <p>Not Found :(</p>
 </div>

@@ -21,3 +21,28 @@
 .info2{
   margin-left: 1rem;
 }
+
+.searchBox{
+  display: flex;
+  flex-flow: row nowrap;
+  margin: .5rem 0;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.input-d{
+  border: none;
+  border: 1px solid rgb(190, 190, 190);
+  padding: .6rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  border-radius: .5rem;
+  background-color: #303030;
+  color: #fff;
+
+  &::placeholder{
+    color: #777;
+  }
+}

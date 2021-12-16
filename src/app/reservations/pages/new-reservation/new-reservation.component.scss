@@ -45,9 +45,13 @@ img{
   }
 
   p{
+    width: 100%;
+    text-align: center;
+    text-overflow: clip;
     margin-top: 1rem;
-    font-size: 3rem;
+    font-size: 1rem;
     color: rgb(31, 71,156);
+    word-wrap: break-word;
   }
 
   mat-icon{

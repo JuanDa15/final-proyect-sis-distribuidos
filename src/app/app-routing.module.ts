@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: ()=>import('./suppliers/suppliers.module').then(module => module.SuppliersModule)
   },
   {
+    path: 'customers',
+    loadChildren: ()=>import('./customers/customers.module').then(module => module.CustomersModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

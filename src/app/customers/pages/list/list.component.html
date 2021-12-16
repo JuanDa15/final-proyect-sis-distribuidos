@@ -4,28 +4,29 @@
     (OnDebounce)="search($event)"
   ></searchbar>
   <select class="input-d" #type>
+    <option value="name" selected>Name</option>
     <option value="document">Document</option>
-    <option value="name"  selected>Name</option>
-    <option value="charge">Charge</option>
+    <option value="email">Email</option>
+    <option value="phone">Phone</option>
   </select>
 </div>
 <div *ngIf="!notFound">
   <page-header
-    title="employees..."
-    btnLink="/employees/new-employee"
+    title="Customers..."
+    btnLink="/customers/new-customer"
   ></page-header>
   <card
     *ngFor="let item of list"
     [title]="item.name"
+    [subtitle]="item.email"
+    [description]="item.document_type + '  -  ' + item.document"
     [id]="item.id!"
-    subtitle="{{ item.document_type + '       ' + item.document }}"
-    [description]="item.charge"
     (OnDelete)="deleteItem($event)"
-    editUrl="/employees/employee"
+    editUrl="/customers/customer"
   ></card>
-  <div class="paginator" *ngIf="totalEmployees > 10">
+  <div class="paginator" *ngIf="totalCustomers > 10">
     <span class="info1">Items per page: 10</span>
-    <span class="info2">{{ list.length }} of {{ totalEmployees }}</span>
+    <span class="info2">{{ list.length }} of {{ totalCustomers }}</span>
     <div class="buttons">
       <mat-icon (click)="previusPage()">arrow_back_ios</mat-icon>
       <mat-icon (click)="nextPage()">arrow_forward_ios</mat-icon>

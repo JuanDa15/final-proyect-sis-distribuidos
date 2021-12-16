@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { supplierInterface } from 'src/app/interfaces/supplier.interface';
 import { MenuService } from 'src/app/services/menu.service';
 import Swal from 'sweetalert2';
@@ -16,6 +16,10 @@ export class ListComponent implements OnInit {
   lastItem:number;
   hasNextPage:boolean;
   hasPreviusPage:boolean;
+  searchType:string;
+  notFound:boolean = false;
+
+  @ViewChild('type') type!:ElementRef;
 
 
   constructor(private menuService:MenuService) {
@@ -25,6 +29,7 @@ export class ListComponent implements OnInit {
     this.lastItem = 9;
     this.hasNextPage = false;
     this.hasPreviusPage = false;
+    this.searchType = 'date';
   }
 
   ngOnInit(): void {
@@ -89,6 +94,17 @@ export class ListComponent implements OnInit {
       })
   }
 
-
-
+  search(e:string){
+    let field = this.type.nativeElement.value;
+    this.menuService.filter(field,e).subscribe({
+      next: (val:any) => {
+        if(val.data.length === 0){
+          this.notFound = true;
+        }else{
+          this.list = val.data;
+          this.notFound = false;
+        }
+      }
+    })
+  }
 }

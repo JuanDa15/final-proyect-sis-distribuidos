@@ -1,50 +1,48 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { supplierInterface } from '../interfaces/supplier.interface';
+import { CustomerInterface } from '../interfaces/customer.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SupplierService {
+export class CustomerService {
 
   private _endPoint:string = environment.URL;
 
   constructor(private http:HttpClient) { }
 
-  addSupplier(supplier:supplierInterface){
-    let url:string = `${this._endPoint}/suppliers`;
-    return this.http.post(url,supplier);
+  addCustomer(customer:CustomerInterface){
+    let url:string = `${this._endPoint}/customer`;
+    return this.http.post(url,customer);
   }
 
-  getSuppliers(pagination:string){
-    let url:string = `${this._endPoint}/suppliers`;
+  getCustomers(pagination:string){
+    let url:string = `${this._endPoint}/customer`;
     const headers = new HttpHeaders()
       .set('range',pagination);
     return this.http.get(url,{headers:headers});
   }
   
-  deleteSupplier(id:number){
-    let url:string = `${this._endPoint}/suppliers/${id}`;
+  deleteCustomer(id:number){
+    let url:string = `${this._endPoint}/customer/${id}`;
     return this.http.delete(url);
   }
 
-  getSupplier(id:number){
-    let url:string = `${this._endPoint}/suppliers/${id}`;
+  getCustomer(id:number){
+    let url:string = `${this._endPoint}/customer/${id}`;
     return this.http.get(url);
   }
 
-  updateSupplier(body:supplierInterface,id:number){
-    let url:string = `${this._endPoint}/suppliers/${id}`;
+  updateCustomer(body:CustomerInterface,id:number){
+    let url:string = `${this._endPoint}/customer/${id}`;
     return this.http.patch(url,body);
   }
 
   filter(field:string,value:string){
-    let url:string = `${this._endPoint}/suppliers`;
-
+    let url:string = `${this._endPoint}/customer`;
     const params = new HttpParams()
       .set(field,value);
-
     return this.http.get(url,{params});
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DishInterface } from 'src/app/interfaces/dish.interface';
 import { DishService } from 'src/app/services/dish.service';
@@ -41,6 +41,8 @@ export class ListComponent implements OnInit {
   lastItem:number;
   hasNextPage:boolean;
   hasPreviusPage:boolean;
+  searchType:string;
+  notFound:boolean = false;
   
   constructor(private dishService:DishService) { 
     this.list = [];
@@ -49,6 +51,7 @@ export class ListComponent implements OnInit {
     this.lastItem = 9;
     this.hasNextPage = false;
     this.hasPreviusPage = false;
+    this.searchType = 'name';
   }
 
   ngOnInit(): void {
@@ -102,5 +105,19 @@ export class ListComponent implements OnInit {
         },
         error: (err) => console.log(err)
       })
+  }
+
+  search(e:string){
+    let field = this.searchType;
+    this.dishService.filter(field,e).subscribe({
+      next: (val:any) => {
+        if(val.data.length === 0){
+          this.notFound = true;
+        }else{
+          this.list = val.data;
+          this.notFound = false;
+        }
+      }
+    })
   }
 }
